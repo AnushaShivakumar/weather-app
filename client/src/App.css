@@ -1,0 +1,236 @@
+/** @format */
+
+/* Reset & Base */
+body,
+html {
+	margin: 0;
+	padding: 0;
+	font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+	color: #fff;
+	background-color: #3a3a3c;
+	overflow-x: hidden;
+	transition: background-color 0.3s ease;
+}
+
+/* Layout Container */
+.app {
+	min-height: 100vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding-bottom: 150px;
+	transition: background 0.4s ease-in-out;
+}
+
+/* Headings */
+h1,
+h2 {
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+h1 {
+	font-size: 2.4rem;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Frosted Glass Container */
+.weather-container,
+.card {
+	backdrop-filter: blur(20px);
+	background: rgba(180, 180, 180, 0.08);
+	border-radius: 24px;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 2rem;
+	margin: 3rem auto 2rem;
+	width: 95%;
+	max-width: 920px;
+	transition: background 0.3s ease;
+}
+
+/* Buttons */
+button,
+.btn {
+	border-radius: 12px !important;
+	font-weight: 600;
+	padding: 0.6rem 1.2rem;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+}
+
+/* Custom Button Styles */
+.history-btn {
+	border-radius: 10px;
+	padding: 0.5rem 1rem;
+	font-weight: 500;
+	border: none;
+	transition: all 0.3s ease;
+	margin: 0.3rem;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.export-csv {
+	background: #00cfff;
+	color: #fff;
+}
+
+.export-json {
+	background: #ffc107;
+	color: #222;
+}
+
+.export-pdf {
+	background: #2e2e2e;
+	color: #fff;
+}
+
+.back-btn {
+	background: #d0f0c0;
+	color: #1c1c1e;
+}
+
+.history-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Edit/Delete Action Buttons */
+.action-btn {
+	width: 90%;
+	max-width: 400px;
+	margin: 0.5rem auto;
+	padding: 0.8rem 1rem;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: 600;
+	display: block;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border: none;
+	transition: 0.3s ease;
+}
+
+.action-edit {
+	background: linear-gradient(to right, #4facfe, #00f2fe);
+	color: white;
+}
+
+.action-delete {
+	background: linear-gradient(to right, #ff416c, #ff4b2b);
+	color: white;
+}
+
+.action-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Input Field */
+input.form-control {
+	color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+input.form-control::placeholder {
+	color: #cccccc;
+}
+
+.app.dark-mode input.form-control {
+	background: rgba(200, 200, 200, 0.15);
+	color: #f5f5f5;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.app.dark-mode input.form-control::placeholder {
+	color: black;
+}
+
+/* Forecast Cards */
+.forecast-day {
+	background: rgba(255, 255, 255, 0.08);
+	border-radius: 20px;
+	padding: 1rem;
+	margin: 0.5rem;
+	text-align: center;
+	width: 120px;
+	color: white;
+	backdrop-filter: blur(12px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Metric Boxes & Map */
+.metric-box,
+.map-card {
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	margin: 1rem 0;
+	padding: 1rem;
+	overflow: hidden;
+}
+
+/* Floating Weather Icons */
+.animated-icon {
+	animation: float 3s ease-in-out infinite;
+	width: 100px;
+	height: 100px;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* Temperature Display */
+.temperature {
+	font-size: 2.5rem;
+	font-weight: bold;
+	background: linear-gradient(to right, #ff9a9e, #fad0c4);
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+/* Footer */
+footer {
+	font-size: 0.85rem;
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(10px);
+	padding: 1rem;
+	text-align: center;
+	color: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	z-index: 1000;
+}
+
+/* Responsive Tweak */
+@media (max-width: 768px) {
+	h1 {
+		font-size: 1.8rem;
+	}
+
+	.weather-container {
+		padding: 1.5rem;
+	}
+}
+
+.forecast-history-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 1rem;
+}
