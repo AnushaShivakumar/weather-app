@@ -1,0 +1,14 @@
+# Logs
+*.log
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional: catch any accidental root-level .env
+.env
+
+# Optional: if you build anything in root
+dist/
+node_modules/
