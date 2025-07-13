@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5050;
 
 const allowedOrigins = [
-	"https://weather-lrbjghk01-anushashivakumars-projects.vercel.app",
+	"https://weather-6i1sd1izw-anushashivakumars-projects.vercel.app",
 ];
 
 app.use(
