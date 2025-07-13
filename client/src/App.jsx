@@ -47,7 +47,6 @@ function App() {
 			},
 		],
 	};
-
 	const aboutPMContent = {
 		title: "🏢 About PM Accelerator",
 		body: (

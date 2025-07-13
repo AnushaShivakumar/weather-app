@@ -36,7 +36,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/weather", weatherRoutes);
-
 mongoose
 	.connect(process.env.MONGO_URI, {
 		useNewUrlParser: true,
