@@ -12,6 +12,7 @@ console.log("PORT from .env:", process.env.PORT);
 const app = express();
 const PORT = process.env.PORT || 5050;
 
+// allowed origins
 const allowedOrigins = [
 	"https://weather-6i1sd1izw-anushashivakumars-projects.vercel.app",
 ];
