@@ -7,11 +7,10 @@ const dotenv = require("dotenv");
 const weatherRoutes = require("./routes/weatherRoutes");
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-// ✅ Smart CORS config: allows Vercel domains & localhost
+// ✅ Proper CORS config for Vercel + localhost
 const corsOptions = {
 	origin: (origin, callback) => {
 		if (
@@ -32,15 +31,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// ✅ Health check route
 app.get("/", (req, res) => {
 	res.send("Server is up and running");
 });
 
-// ✅ Weather routes
 app.use("/api/weather", weatherRoutes);
 
-// ✅ MongoDB connection
 mongoose
 	.connect(process.env.MONGO_URI, {
 		useNewUrlParser: true,
