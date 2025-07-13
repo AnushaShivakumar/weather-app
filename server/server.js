@@ -12,7 +12,18 @@ console.log("PORT from .env:", process.env.PORT);
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors());
+const allowedOrigins = [
+	"https://weather-lrbjghk01-anushashivakumars-projects.vercel.app",
+];
+
+app.use(
+	cors({
+		origin: allowedOrigins,
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		credentials: true,
+	})
+);
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
