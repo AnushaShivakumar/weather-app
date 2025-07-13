@@ -1,66 +1,47 @@
 /** @format */
 
-// 🔥 USE ONLY WeatherAPI.com and your own backend
-import { toast } from "react-toastify";
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const weatherRoutes = require("./routes/weatherRoutes");
 
-export const fetchWeatherByCity = async (city) => {
-	try {
-		const backendUrl = import.meta.env.VITE_BACKEND_URL;
+dotenv.config();
 
-		if (!city) throw new Error("City name is required");
+const app = express();
+const PORT = process.env.PORT || 5050;
 
-		const response = await fetch(
-			`${backendUrl}/api/weather/live?location=${encodeURIComponent(city)}`
-		);
-
-		if (!response.ok) {
-			throw new Error("Failed to fetch weather data from backend");
-		}
-
-		return await response.json();
-	} catch (error) {
-		console.error("Error fetching weather from backend:", error);
-		throw error;
-	}
-};
-
-export const fetchForecastByCity = async (city) => {
-	try {
-		const backendUrl = import.meta.env.VITE_BACKEND_URL;
-		const response = await fetch(
-			`${backendUrl}/api/weather/forecast?location=${encodeURIComponent(city)}`
-		);
-
-		if (!response.ok) throw new Error("Failed to fetch forecast data");
-		return await response.json();
-	} catch (error) {
-		console.error("Error fetching forecast:", error);
-		throw error;
-	}
-};
-
-export const saveWeatherToDB = async (weatherData) => {
-	try {
-		const response = await fetch(
-			import.meta.env.VITE_BACKEND_URL + "/api/weather",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(weatherData),
+// ✅ CORS: Only allow Vercel domains
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin || origin.endsWith(".vercel.app")) {
+				callback(null, true);
+			} else {
+				console.log("❌ Blocked by CORS:", origin);
+				callback(new Error("Not allowed by CORS"));
 			}
-		);
+		},
+		methods: ["GET", "POST"],
+		credentials: true,
+	})
+);
 
-		if (response.status === 409) {
-			toast.info("You've already saved weather for this location today!");
-		} else if (!response.ok) {
-			throw new Error("Server error");
-		} else {
-			toast.success("✅ Weather saved successfully!");
-		}
-	} catch (error) {
-		console.error("Save failed:", error);
-		toast.error("❌ Failed to save weather data");
-	}
-};
+app.use(express.json());
+app.use("/api/weather", weatherRoutes);
+
+app.get("/", (req, res) => {
+	res.send("✅ Backend live");
+});
+
+mongoose
+	.connect(process.env.MONGO_URI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		dbName: "weatherApp",
+	})
+	.then(() => {
+		console.log("✅ MongoDB connected");
+		app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+	})
+	.catch((err) => console.error("❌ MongoDB error:", err.message));
